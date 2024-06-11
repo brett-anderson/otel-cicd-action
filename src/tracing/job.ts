@@ -69,13 +69,15 @@ export async function traceWorkflowRunJobs({
   }
 
   const spanContext: SpanContext = {
-    traceId: "2604504634922341076776623263868986797",
+    traceId: "brett04634922341076776623263868986797",
     spanId: "5213367945872657620",
     traceFlags: 1,
     isRemote: false,
   };
 
-  const currentContext = trace.setSpanContext(ROOT_CONTEXT, spanContext);
+  const span = trace.wrapSpanContext(spanContext);
+
+  const context = trace.setSpan(ROOT_CONTEXT, span);
 
   const rootSpan = tracer.startSpan(
     workflowRunJobs.workflowRun.name ||
@@ -127,7 +129,7 @@ export async function traceWorkflowRunJobs({
       root: true,
       startTime,
     },
-    currentContext,
+    context,
   );
   core.debug(`TraceID: ${rootSpan.spanContext().traceId}`);
   let code = SpanStatusCode.OK;

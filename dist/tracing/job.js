@@ -61,12 +61,13 @@ async function traceWorkflowRunJobs({ provider, workflowRunJobs, }) {
         }, {});
     }
     const spanContext = {
-        traceId: "2604504634922341076776623263868986797",
+        traceId: "brett04634922341076776623263868986797",
         spanId: "5213367945872657620",
         traceFlags: 1,
         isRemote: false,
     };
-    const currentContext = api_1.trace.setSpanContext(api_1.ROOT_CONTEXT, spanContext);
+    const span = api_1.trace.wrapSpanContext(spanContext);
+    const context = api_1.trace.setSpan(api_1.ROOT_CONTEXT, span);
     const rootSpan = tracer.startSpan(workflowRunJobs.workflowRun.name ||
         `${workflowRunJobs.workflowRun.workflow_id}`, {
         attributes: {
@@ -103,7 +104,7 @@ async function traceWorkflowRunJobs({ provider, workflowRunJobs, }) {
         },
         root: true,
         startTime,
-    }, currentContext);
+    }, context);
     core.debug(`TraceID: ${rootSpan.spanContext().traceId}`);
     let code = api_1.SpanStatusCode.OK;
     if (workflowRunJobs.workflowRun.conclusion === "failure") {
