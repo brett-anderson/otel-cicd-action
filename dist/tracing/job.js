@@ -61,8 +61,8 @@ async function traceWorkflowRunJobs({ provider, workflowRunJobs, }) {
         }, {});
     }
     const spanContext = {
-        traceId: "2604504634922341076776623263868986797",
-        spanId: "5213367945872657620",
+        traceId: "a9c3b99a95cc045e573e163c3ac80a77",
+        spanId: "d99d251a8caecd06",
         traceFlags: 1,
         isRemote: true,
     };
