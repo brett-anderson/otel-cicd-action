@@ -75,7 +75,7 @@ export async function traceWorkflowRunJobs({
     isRemote: false,
   };
 
-  trace.setSpanContext(ROOT_CONTEXT, spanContext);
+  const currentContext = trace.setSpanContext(ROOT_CONTEXT, spanContext);
 
   const rootSpan = tracer.startSpan(
     workflowRunJobs.workflowRun.name ||
@@ -127,7 +127,7 @@ export async function traceWorkflowRunJobs({
       root: true,
       startTime,
     },
-    ROOT_CONTEXT,
+    currentContext,
   );
   core.debug(`TraceID: ${rootSpan.spanContext().traceId}`);
   let code = SpanStatusCode.OK;
