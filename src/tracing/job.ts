@@ -72,7 +72,7 @@ export async function traceWorkflowRunJobs({
     traceId: "brett04634922341076776623263868986797",
     spanId: "5213367945872657620",
     traceFlags: 1,
-    isRemote: false,
+    isRemote: true,
   };
 
   const span = trace.wrapSpanContext(spanContext);
