@@ -68,6 +68,15 @@ export async function traceWorkflowRunJobs({
     );
   }
 
+  const spanContext: SpanContext = {
+    traceId: "2604504634922341076776623263868986797",
+    spanId: "5213367945872657620",
+    traceFlags: 1,
+    isRemote: false,
+  };
+
+  trace.setSpanContext(ROOT_CONTEXT, spanContext);
+
   const rootSpan = tracer.startSpan(
     workflowRunJobs.workflowRun.name ||
       `${workflowRunJobs.workflowRun.workflow_id}`,
